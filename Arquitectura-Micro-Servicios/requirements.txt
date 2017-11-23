@@ -1,2 +1,5 @@
 Flask==0.10.1
 requests==2.12.4
+twython==3.6.0
+tweepy==3.5.0
+TextBlob==0.14.0
