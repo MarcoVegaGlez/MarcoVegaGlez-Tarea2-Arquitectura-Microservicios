@@ -9,9 +9,11 @@
 #
 #   Este archivo define el rol de un servicio. Su función general es porporcionar en un objeto JSON
 #   comentarios recientes acerca de una pelicula o serie de television haciendo uso de la API de Tweeter
-#   con la ayuda de la libreria twython.
+#   con la ayuda de la libreria tweepy y despues se hace un analisis de sentimientos con la ayuda de la libreria
+#   TextBlob.
 #   API Twitter: https://developer.twitter.com/en/docs
-#   API twython: https://github.com/ryanmcgrath/twython
+#   API tweepy: http://docs.tweepy.org/en/v3.5.0/
+#   API TextBlob: https://textblob.readthedocs.io/en/dev/
 #
 #
 #
@@ -26,7 +28,7 @@
 #           |                       |    particular.          |   pelicula en cuestión.|
 #           +-----------------------+-------------------------+------------------------+
 #
-#	Ejemplo de uso: Abrir navegador e ingresar a http://localhost:8084/api/v1/information?t=matrix
+#	Ejemplo de uso: Abrir navegador e ingresar a http://localhost:8086/api/v1/information?t=matrix
 #
 import os
 from flask import Flask, abort, render_template, request
@@ -49,7 +51,6 @@ def get_tweets():
     """
     # Se lee el parámetro 't' que contiene el título de la película o serie que se va a consultar
     title = request.args.get("t")
-    #api_key = '7aed8d98'
     consumerkey = "4NSUdUvAh5zVofUgoPTpLAWIR"
     consumerSecretKey = "9QCWVUexXwZWMlFucJzw0aT4e092OQkKp1Au7j1JqIobxrVeXA"
     accesToken = "399643418-7zUPZXiglJweB2yfYJN9WlBdVwyDxKYWC0hpKYKf"
