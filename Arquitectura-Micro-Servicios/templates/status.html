@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Tarea 2 Arquitecturas Micro Servicios.">
+    <meta name="author" content="Perla Velasco & Yonathan Mtz">
+
+    <title>Tarea 2</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Custom Fonts -->
+    <link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+          rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- Header -->
+<header id="top" class="header">
+    <div class="text-vertical-center">
+        <h1>Netflix Inc.</h1>
+        <h3>Query Performed</h3>
+        <br>
+        <a href="#data_analysis" class="btn btn-dark btn-lg">View result</a>
+    </div>
+</header>
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Portfolio Item Heading -->
+    <div id="data_analysis" class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ result_omdb.omdb['Title'] }}
+                <small>({{ result_omdb.omdb['Released'] }})</small>
+            </h1>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Portfolio Item Row -->
+    <div class="row">
+
+        <div class="col-md-8">
+            <img class="img-responsive" src="{{ result_omdb.omdb['Poster'] }}" alt="{{ result_omdb.omdb['Title'] }}">
+        </div>
+
+        <div class="col-md-4">
+            <h3>Summary</h3>
+            <p>{{ result_omdb.omdb['Plot'] }}.</p>
+            <h3>Series Details</h3>
+            <ul>
+                <li><strong>Year:</strong> {{ result_omdb.omdb['Year'] }}.</li>
+                <li><strong>Writer:</strong> {{ result_omdb.omdb['Writer'] }}.</li>
+                <li><strong>Actors:</strong> {{ result_omdb.omdb['Actors'] }}.</li>
+                <li><strong>Genre:</strong> {{ result_omdb.omdb['Genre'] }}.</li>
+                <li><strong>Type:</strong> {{ result_omdb.omdb['Type'] }}.</li>
+                <li><strong>Total seasons:</strong> {{ result_omdb.omdb['totalSeasons'] }}.</li>
+                <li><strong>IMDB Rating:</strong> {{ result_omdb.omdb['imdbRating'] }}.</li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+<!-- Tweets -->
+<div class="container">
+  <!-- Portfolio Item Heading -->
+  <h3>Tweets from the users:</h3>
+  <form>
+    <div class="form-group">
+      <table style="width:100%" border="1">
+        <tr>
+          <p><img src="{{ result_comment.comment['1']['image'] }}"></p>
+          <p><strong>User: </strong>{{ result_comment.comment['1']['user'] }}</p>
+          <p><strong>Name: </strong>{{ result_comment.comment['1']['name'] }}</p>
+          <p><strong>Tweet: </strong>{{ result_comment.comment['1']['text'] }}</p>
+          <br>
+        </tr>
+      </table>
+      <table style="width:100%"  border="1">
+        <tr>
+          <p><img src="{{ result_comment.comment['2']['image'] }}"></p>
+          <p><strong>User: </strong>{{ result_comment.comment['2']['user'] }}</p>
+          <p><strong>Name: </strong>{{ result_comment.comment['2']['name'] }}</p>
+          <p><strong>Tweet: </strong>{{ result_comment.comment['2']['text'] }}</p>
+          <br>
+        </tr>
+      </table>
+      <table style="width:100%"  border="1">
+        <tr>
+          <p><img src="{{ result_comment.comment['3']['image'] }}"></p>
+          <p><strong>User: </strong>{{ result_comment.comment['3']['user'] }}</p>
+          <p><strong>Name: </strong>{{ result_comment.comment['3']['name'] }}</p>
+          <p><strong>Tweet: </strong>{{ result_comment.comment['3']['text'] }}</p>
+          <br>
+        </tr>
+      </table>
+      <table style="width:100%"  border="1">
+        <tr>
+          <p><img src="{{ result_comment.comment['4']['image'] }}"></p>
+          <p><strong>User: </strong>{{ result_comment.comment['4']['user'] }}</p>
+          <p><strong>Name: </strong>{{ result_comment.comment['4']['name'] }}</p>
+          <p><strong>Tweet: </strong>{{ result_comment.comment['4']['text'] }}</p>
+          <br>
+        </tr>
+      </table>
+      <table style="width:100%"  border="1">
+        <tr>
+          <p><img src="{{ result_comment.comment['5']['image'] }}"></p>
+          <p><strong>User: </strong>{{ result_comment.comment['5']['user'] }}</p>
+          <p><strong>Name: </strong>{{ result_comment.comment['5']['name'] }}</p>
+          <p><strong>Tweet: </strong>{{ result_comment.comment['5']['text'] }}</p>
+          <br>
+        </tr>
+      </table>
+    </div>
+  </form>
+  <!--<div id="data_analysis" class="row">-->
+      <!--<div class="col-lg-12">-->
+
+      <!--</div>-->
+  <!--</div>-->
+  <!-- /.row -->
+  <!-- Coments Twitter Row-->
+  <div class="row">
+    <ul>
+  </div>
+  <!-- ./row-->
+
+</div>
+
+<!-- Tweets -->
+<div class="container">
+  <!-- Portfolio Item Heading -->
+  <div id="data_analysis" class="row">
+      <div class="col-lg-12">
+          <h1>Results of: </h1><h1 class="page-header">{{ result_omdb.omdb['Title'] }}</h1>
+          <ul>
+            <li><strong>Tendencia: </strong>{{ result_sentiment.sentiment['Tendencia'] }}</li>
+            <li><strong>Numero de Tweets: </strong>{{ result_sentiment.sentiment['num_tweets'] }}</li>
+          </ul>
+      </div>
+  </div>
+  <!-- /.row -->
+  <!-- Coments Twitter Row-->
+  <div class="row">
+
+  </div>
+  <!-- ./row-->
+
+</div>
+<!-- /.container -->
+<!-- /.container -->
+<!--<button id="btnCargar">Cargar</button>-->
+<div class="my-new-list">
+
+</div>
+<table style="width:100%" border="0" id="tabla">
+
+</table>
+
+
+<!-- About -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h4>{{ result_omdb.omdb['Awards'] }}</h4>
+                <p class="lead">
+                    <small><a target="_blank" href="{{ result_omdb.omdb['Website'] }}">{{ result_omdb.omdb['Title'] }}</a>.</small>
+                </p>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+
+<!-- Result -->
+<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+
+
+<!-- Services -->
+<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+<section id="services" class="services bg-primary">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-10 col-lg-offset-1">
+                <h4>Services Used</h4>
+                <hr class="small">
+                <div class="row">
+                    <div class="col-md-12 col-sm-3">
+                        <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-ticket fa-stack-1x text-primary"></i>
+                            </span>
+                            <h4>
+                                <strong>OMDb API</strong>
+                            </h4>
+                            <p>Provides the general details of the specific series.</p>
+                            <a href="http://www.omdbapi.com/" class="btn btn-light">Go site!!!</a>
+                    </div>
+                    <div class="service-item">
+                      <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-cube fa-stack-1x" aria-hidden="true"></i>
+                      </span>
+                      <h4>
+                        <strong>Twython API</strong>
+                      </h4>
+                      <p> Actively maintained, pure Python wrapper for the Twitter API.<br> Supports both normal and streaming Twitter APIs</p>
+                      <a href="https://twython.readthedocs.io/en/latest/" class="btn btn-light">Go site!!!</a>
+                    </div>
+                    <div class="service-item">
+                      <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-diamond fa-stack-1x" aria-hidden="true"></i>
+                      </span>
+                      <h4>
+                        <strong>Tweepy API</strong>
+                      </h4>
+                      <p> An easy-to-use Python library for accessing the Twitter API..</p>
+                      <a href="http://www.tweepy.org" class="btn btn-light">Go site!!!</a>
+                    </div>
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.col-lg-10 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <a href="/" class="btn btn-dark btn-lg">Perform again</a>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h4><strong>Software Architecture</strong>
+                </h4>
+                <p>Microservices Style
+                    <br>Perla Velasco-Elizondo
+                    <br>&amp;
+                    <br>Yonathan A. Martínez Padilla</p>
+                <br>
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://github.com/arqdesw-curso/Arquitectura-Micro-Servicios"><i
+                                class="fa fa-github-alt fa-fw fa-3x"></i></a>
+                    </li>
+                </ul>
+                <hr class="small">
+                <p class="text-muted">Copyright &copy; University Autonomous of Zacatecas 2017</p>
+            </div>
+        </div>
+    </div>
+    <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+</footer>
+
+<!-- jQuery -->
+<script src="../static/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../static/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script>
+    //#to-top button appears after scrolling
+    var fixed = false;
+    $(document).scroll(function () {
+        if ($(this).scrollTop() > 250) {
+            if (!fixed) {
+                fixed = true;
+                // $('#to-top').css({position:'fixed', display:'block'});
+                $('#to-top').show("slow", function () {
+                    $('#to-top').css({
+                        position: 'fixed',
+                        display: 'block'
+                    });
+                });
+            }
+        } else {
+            if (fixed) {
+                fixed = false;
+                $('#to-top').hide("slow", function () {
+                    $('#to-top').css({
+                        display: 'none'
+                    });
+                });
+            }
+        }
+    });
+</script>
+<!--Create table of tweets-->
+<!--<script>
+    $.getJSON( "result_comment.json", function( result_comment ) {
+        var items = [];
+        for(var i = 0; i < result_comment.comment.length; i++) {
+             items.push( "<li clas='row'>");
+              items.push( "<img src='" + result_comment.comment[i].image + "'/>");
+              items.push( "<p class='text'>" + result_comment.comment[i].user + "</p>");
+              items.push( "<p class='text'>" + result_comment.comment[i].name + "</p>");
+              items.push( "<p class='text'>" + result_comment.comment[i].text + "</p>");
+              items.push( "</li>" );
+            console.log(result_comment.comment[i]);
+        }
+
+    $( "<ul/>", {
+      "class": "my-new-list",
+      html: items.join( "" )
+    }).appendTo( "body" );
+    });
+</script>-->
+<!--<script>
+ {
+ 1: {
+  'text': "RT @GreenDay: That's how you do it Mexico \U0001f1f2\U0001f1fd Amazing end to the Revolution Radio Tour! https://t.co/I6I9gXlMzL",
+  'image': 'http://pbs.twimg.com/profile_images/909675455070003200/_PIs-f6F_normal.jpg',
+  'name': '\U0001f17fab..!!',
+  'user': 'ipab_lp'},
+ 2: {
+  'text': "@cupofpetite but I also wanna branch out and go other places, I still haven't gone to Mexico or Canada \U0001f625",
+  'image': 'http://pbs.twimg.com/profile_images/833858556331855873/yRMZQZqH_normal.jpg',
+  'name': 'David Koster',
+  'user': 'Oteresk'},
+ 3: {
+ 'text': 'RT @NOTSCTop10PIays: Marhsawn Lynch in Mexico "I fuck with my Mex," \U0001f62d\U0001f62d\U0001f62d\n https://t.co/pXk0Fhfeuh',
+ 'image': u'http://pbs.twimg.com/profile_images/928151851127660545/E9OGcGkt_normal.jpg',
+ 'name': u'Slumped',
+ 'user': u'ChiefKimberly'}
+}
+
+];*/
+  var d = '<tr>'+
+  '<th>User: </th>'+
+  '<th>Name: </th>'+
+  '<th>Tweet: </th>'+
+  '</tr>';
+
+  $("#btnCargar").click(function () {
+   for (var i = 0; i < datos.length; i++) {
+     d+= '<tr>'+
+     '<td>'+datos[i].user+'</td>'+
+     '<td>'+datos[i].name+'</td>'+
+     '<td>'+datos[i].text+'</td>'+
+     '</tr>';
+   }
+   $("#tabla").append(d);
+  });
+</script>-->
+</body>
+</html>
