@@ -20,13 +20,13 @@
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
 #           +-----------------------+-------------------------+------------------------+
 #           |                       |  - Ofrecer un JSON que  | - Utiliza el API de    |
-#           |    Procesador de      |    contenga información |   IMDb.                |
-#           |     comentarios       |    detallada de pelí-   | - Devuelve un JSON con |
-#           |      de Twitter       |    culas o series en    |   datos de la serie o  |
+#           |    Procesador de      |    contenga tweets      |   Twython.             |
+#           |     comentarios       |    recientes de pelí-   | - Devuelve un JSON con |
+#           |      de Twitter       |    culas o series en    |   tweets de la serie o |
 #           |                       |    particular.          |   pelicula en cuestión.|
 #           +-----------------------+-------------------------+------------------------+
 #
-#	Ejemplo de uso: Abrir navegador e ingresar a http://localhost:8084/api/v1/information?t=matrix
+#	Ejemplo de uso: Abrir navegador e ingresar a http://localhost:8085/api/v1/information?t=matrix
 #
 import os
 from flask import Flask, abort, render_template, request
@@ -41,42 +41,48 @@ app = Flask(__name__)
 @app.route("/api/v1/information")
 def get_tweets():
     """
-    Este método obtiene información acerca de una película o serie
+    Este método obtiene información acerca de un tweet de una película o serie
     específica.
-    :return: JSON con la información de la película o serie
+    :return: JSON con la información del tweet de la película o serie
     """
     # Se lee el parámetro 't' que contiene el título de la película o serie que se va a consultar
-    title = request.args.get("t")
-    #api_key = '7aed8d98'
+    title = request.args.get("t")    
+    # Se crean las llaves (keys) para poder obtener los tweets de Twitter
     consumerkey = "4NSUdUvAh5zVofUgoPTpLAWIR"
     consumerSecretKey = "9QCWVUexXwZWMlFucJzw0aT4e092OQkKp1Au7j1JqIobxrVeXA"
     accesToken = "399643418-7zUPZXiglJweB2yfYJN9WlBdVwyDxKYWC0hpKYKf"
     accesSecretToken = "Up4YyniBoZRf7in2YroFhJgXAFky9I0XRthVLFY2BNbXS"
-
+    # Se instancia la libreria de twython, con las llaves como argumentos
     twitter = Twython(consumerkey, consumerSecretKey, accesToken, accesSecretToken)
 
-    result = twitter.search(q=title, lang = "en", result_type = "mixed")
+    # Se hace una busqueda de tweets de una serie o una pelicula, y twython responde con un objeto JSON
+    result = twitter.search(q=title, lang = "en", result_type = "recent")
+    # Se crea un diccionario vacio donde se guardaran los tweets obtenidos
     comments = {}
+    # Es un identificador de cada tweet dentro del diccionario
     userid = 0
+    # Se crea un diccionario vacio donde se guardaran los datos que conforman a el tweet de un usuario
     user = {}
+    # Se crea una lista con los componentes que se quieren obtener de un tweet
     names = ('name','text','image','user')
+    
+    # Se recorre el objeto JSON obtenido anteriormente en busca de los elementos de la lista "names"
     for status in result["statuses"]:
+        # Se agregan como "llaves" del diccionario los elementos de la lista "names"
         user = user.fromkeys(names)
+        # El identificador del tweet incrementa en 1
         userid +=1
+        # Se asigna el valor para la llave "name" del tweet en cuestion
         user['name'] = status["user"]["name"]
+        # Se asigna el valor para la llave "text" del tweet en cuestion
         user["text"] = status["text"]
+        # Se asigna el valor para la llave "image" del tweet en cuestion
         user["image"] = status["user"]["profile_image_url"]
+        # Se asigna el valor para la llave "user" del tweet en cuestion
         user["user"] = status["user"]["screen_name"]
+        # Se asigna el identificador del tweet
         comments[userid] = user
-
-    #url_base = 'https://api.twitter.com/1.1/search/tweets.json' + '&t=' + '&result_type=recent' #'http://www.omdbapi.com/?apikey=' + api_key + '&t='
-    # Se conecta con el servicio de IMDb a través de su API
-    #url_comments = urllib.urlopen(url_base + title + "&plot=full&r=json")
-    # Se lee la respuesta de IMDb
-    #json_comment = comment.read()
-    # Se convierte en un JSON la respuesta recibida
-    #comment = json.loads(comments)
-    # Se regresa el JSON de la respuesta
+        
     return json.dumps(comments), 200
 
 
